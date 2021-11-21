@@ -349,6 +349,12 @@ describe Kitchen::Driver::Vagrant do
       expect(driver[:synced_folders]).to eq([cache_directory_array])
     end
 
+    it "sets :synced_folders with the cache_directory when :use_cached_chef_client is `true`" do
+      config[:box] = "some_owner/centos-99"
+      config[:use_cached_chef_client] = true
+      expect(driver[:synced_folders]).to eq([cache_directory_array])
+    end
+
     it "does not set :synced_folders when cache_directory is false" do
       config[:box] = "bento/centos-99"
       config[:cache_directory] = false
